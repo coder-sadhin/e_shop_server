@@ -39,6 +39,7 @@ async function run() {
         const usersCollection = client.db('E-shop').collection('users')
         const ProductsCollection = client.db('E-shop').collection('ProductsCollection')
         const AddVertiesCollection = client.db('E-shop').collection('AddVerties')
+        const categoryCollection = client.db('E-shop').collection('category')
 
         app.post('/booking', async (req, res) => {
             const bookingInfo = req.body;
@@ -53,6 +54,11 @@ async function run() {
             }
             const result = await bookingsCollection.find(query).toArray();
             // console.log(result);
+            res.send(result)
+        })
+
+        app.get('/categoryItem', async (req, res) => {
+            const result = await categoryCollection.find({}).toArray();
             res.send(result)
         })
 
